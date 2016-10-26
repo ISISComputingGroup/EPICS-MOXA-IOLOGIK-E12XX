@@ -1,0 +1,14 @@
+*.bin
+*.o
+*.a
+*.so
+*~
+*.swp
+O.*
+envPaths
+bin/
+lib/
+documentation/html
+db/
+dbd/
+git-cmd.sh

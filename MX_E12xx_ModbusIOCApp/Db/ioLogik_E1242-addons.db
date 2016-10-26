@@ -1,0 +1,6 @@
+
+record( bo, "$(NAME):$(ASYNPORT)_WD_CLEAR")
+{
+    field(HIGH, "1")
+}
+

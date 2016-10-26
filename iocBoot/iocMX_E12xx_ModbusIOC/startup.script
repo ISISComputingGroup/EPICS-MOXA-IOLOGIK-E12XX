@@ -1,0 +1,314 @@
+#######################################################################
+# 1. SYSNAME: pickup one of listed here and uncomment (and comment out epicsEnvSet("SYSNAME","TEST") line below)
+# 2. E124[0-9]_ASYNPORT: set this ASYN port name variable based on last byte of IP address, 
+# 3. call drvAsynIPPortConfigure( asyn_port_name, IP_addres, ...), uncomment from predefined
+# 4. call modbusInterposeConfig( asyn_port_name, .... some params, uncomment from predefined
+# 5. for each modbus-register-access-port call drvModbusAsynConfigure(), uncomment from predefined
+# 6. optionally: enable debug asynSetTraceMask() & asynSetTraceIOMask() on an arbitrary asyn- or modbus-port
+# 7. edit TOP/MX_E12xx_ModbusIOCApp/Db/ substitution files in concern AND make rebuild
+# 8. comment/uncomment dbLoadRecords() for desired db-files
+#######################################################################
+
+epicsEnvSet("SYSNAME","TEST")
+
+#######################################################################
+# set ASYN port name variable ('RIO' + last_byte_of_IP_address)
+
+# ### E1242 (4AI, 4DI, 4DIO) ###
+# epicsEnvSet("E1242_ASYNPORT","RIO254")
+# ### E1241 (4AO) ###
+# epicsEnvSet("E1241_ASYNPORT","RIO253")
+# ### E1240 (8AI) ###
+# epicsEnvSet("E1240_ASYNPORT","RIO252")
+# ### E1214 (6DI, 6RelDO) ###
+# epicsEnvSet("E1214_ASYNPORT","RIO251")
+
+# drvAsynIPPortConfigure("$(E1242_ASYNPORT)", "192.168.127.254:502", 0, 0, 1)
+# drvAsynIPPortConfigure("$(E1241_ASYNPORT)", "192.168.127.254:502", 0, 0, 1)
+# drvAsynIPPortConfigure("$(E1240_ASYNPORT)", "192.168.127.254:502", 0, 0, 1)
+# drvAsynIPPortConfigure("$(E1214_ASYNPORT)", "192.168.127.254:502", 0, 0, 1)
+
+#######################################################################
+#drvAsynIPPortConfigure(const char *portName,
+#                       const char *hostInfo,
+#                       unsigned int priority,
+#                       int noAutoConnect,
+#                       int noProcessEos);
+
+#######################################################################
+# modbusInterposeConfig(const char *portName,
+#                      modbusLinkType linkType, .... Modbus link layer type: 0 = TCP/IP , 1 = RTU, 2 = ASCII
+#                      int timeoutMsec, 
+#                      int writeDelayMsec)
+#modbusInterposeConfig("$(E1242_ASYNPORT)", 0, 2000, 0)
+#modbusInterposeConfig("$(E1241_ASYNPORT)", 0, 2000, 0)
+#modbusInterposeConfig("$(E1240_ASYNPORT)", 0, 2000, 0)
+#modbusInterposeConfig("$(E1214_ASYNPORT)", 0, 2000, 0)
+
+#######################################################################
+# modbus port driver is created with the following command:
+#drvModbusAsynConfigure(portName, 
+#                        tcpPortName,
+#                        slaveAddress, 
+#                        modbusFunction, 
+#                        modbusStartAddress, 
+#                        modbusLength,
+#                        dataType,
+#                        pollMsec, 
+#                        plcType);
+#######################################################################
+
+##Modbus functions
+#Function name                          Function code
+#Read Discrete Inputs                    2
+#Read Coils                              1
+#Write Single Coil                       5
+#Write Multiple Coils                   15
+#Read Input Registers                    4
+#Read Holding Registers                  3
+#Write Single Register                   6
+#Write Multiple Registers               16
+#Read/Write Multiple Registers          23
+#Mask Write Register                    22
+#Read FIFO Queue                        24
+#Read File Record                       20
+#Write File Record                      21
+#Read Exception Status                   7
+#Diagnostic                              8
+#Get Com Event Counter                  11
+#Get Com Event Log                      12
+#Report Slave ID                        17
+#Read Device Identification             43
+#Encapsulated Interface Transport       43
+#
+#######################################################################
+
+#######################################################################
+#Supported Modbus data types
+#modbusDataType value 	drvUser field 	Description
+#0 	UINT16 	Unsigned 16-bit binary integers
+#1 	INT16SM 	16-bit binary integers, sign and magnitude format. In this format bit 15 is the sign bit, and bits 0-14 are the absolute value of the magnitude of the number. 
+#			This is one of the formats used, for example, by Koyo PLCs for numbers such as ADC conversions.
+#2 	BCD_UNSIGNED 	Binary coded decimal (BCD), unsigned. This data type is for a 16-bit number consisting of 4 4-bit nibbles, each of which encodes a decimal number from 0-9. 
+#			A BCD number can thus store numbers from 0 to 9999. Many PLCs store some numbers in BCD format.
+#3 	BCD_SIGNED 	4-digit binary coded decimal (BCD), signed. This data type is for a 16-bit number consisting of 3 4-bit nibbles, and one 3-bit nibble. 
+#			Bit 15 is a sign bit. Signed BCD numbers can hold values from -7999 to +7999. This is one of the formats used by Koyo PLCs for numbers such as ADC conversions.
+#4 	INT16 		16-bit signed (2's complement) integers. This data type extends the sign bit when converting to epicsInt32.
+#5 	INT32_LE 	32-bit integers, little endian (least significant word at Modbus address N, most significant word at Modbus address N+1)
+#6 	INT32_BE 	32-bit integers, big endian (most significant word at Modbus address N, least significant word at Modbus address N+1)
+#7 	FLOAT32_LE 	32-bit floating point, little endian (least significant word at Modbus address N, most significant word at Modbus address N+1)
+#8 	FLOAT32_BE 	32-bit floating point, big endian (most significant word at Modbus address N, least significant word at Modbus address N+1)
+#9 	FLOAT64_LE 	64-bit floating point, little endian (least significant word at Modbus address N, most significant word at Modbus address N+3)
+#10 	FLOAT64_BE 	64-bit floating point, big endian (most significant word at Modbus address N, least significant word at Modbus address N+3)
+#######################################################################
+
+# MOXA E1242 DOs: function 5 (Write Single Coil), base_address 0x0, length 0x4, data_type = UINT16 = 0, # pollMsec = for write func (4,..) any non-zero val to read first
+#drvModbusAsynConfigure("$(E1242_ASYNPORT)_DO", "$(E1242_ASYNPORT)", 0, 5, 0x0,   0x4, 0,   1, "ioLogik")
+
+# MOXA E1242 DOs: function 1 (Read Coils), address 0x0, length 0x4, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
+#drvModbusAsynConfigure("$(E1242_ASYNPORT)_DO_RBV", "$(E1242_ASYNPORT)", 0, 1, 0x0,   0x4, 0, 100, "ioLogik")
+
+# MOXA E1242 DIs: function 2 (Read Discrete Inputs), address 0x0, length 0x8, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
+#drvModbusAsynConfigure("$(E1242_ASYNPORT)_DI", "$(E1242_ASYNPORT)", 0, 2, 0x0,   0x8, 0, 100, "ioLogik")
+
+# MOXA E1242 AIs: function 4 (Read Input Registers), address 0x200, 0x4 words , data_type = UINT16 = 0, 
+#drvModbusAsynConfigure("$(E1242_ASYNPORT)_AI", "$(E1242_ASYNPORT)", 0, 4, 0x200, 0x4, 0, 100, "ioLogik")
+
+# MOXA E1242 Current mode status: function 4, address 0x240, 0x4 words , data_type = UINT16 = 0, 
+#drvModbusAsynConfigure("$(E1242_ASYNPORT)_AI_St", "$(E1242_ASYNPORT)", 0, 4, 0x0240, 0x4, 0, 500, "ioLogik")
+
+# MOXA E1242 Current mode settings read: function 3, address 0x220, 0x4 words , data_type = UINT16 = 0, 
+#drvModbusAsynConfigure("$(E1242_ASYNPORT)_AIMR", "$(E1242_ASYNPORT)", 0, 3, 0x0220, 0x4, 0, 500, "ioLogik")
+
+# MOXA E1242 Current mode settings write: function 6, address 0x220, 0x4 double words => 0x8, data_type = UINT16 = 0, 
+#drvModbusAsynConfigure("$(E1242_ASYNPORT)_AIMW", "$(E1242_ASYNPORT)", 0, 6, 0x0220, 0x4, 0, 1, "ioLogik")
+
+# MOXA E1242 Burn out value read (float - two words): function 3, address 0x230, 0x4 double words => 0x8, data_type = FLOAT32_LE = 7, 
+#drvModbusAsynConfigure("$(E1242_ASYNPORT)_BOR", "$(E1242_ASYNPORT)", 0, 3, 0x0230, 0x8, 7, 500, "ioLogik")
+
+# MOXA E1242 Burn out value write (float - two words): function 16 write multiple regs, address 0x230, 0x4 double words => 0x8 , data_type = FLOAT32_LE = 7, 
+#drvModbusAsynConfigure("$(E1242_ASYNPORT)_BOW", "$(E1242_ASYNPORT)", 0, 16, 0x0230, 0x8, 7, 1, "ioLogik")
+
+##################################
+
+# MOXA E1241 AOs: function 6 (Write Single Register), address 0x0400, 0x4 words , data_type = UINT16 = 0, 
+#drvModbusAsynConfigure("$(E1241_ASYNPORT)_AO", "$(E1241_ASYNPORT)", 0, 6, 0x0400, 0x4, 0, 1, "ioLogik")
+
+# MOXA E1241 AOs: function 3 (Read Holding Registers), address 0x0400, 0x4 words , data_type = UINT16 = 0, 
+#drvModbusAsynConfigure("$(E1241_ASYNPORT)_AO_RBV", "$(E1241_ASYNPORT)", 0, 3, 0x0400, 0x4, 0, 100, "ioLogik")
+
+##################################
+
+# MOXA E1240 AIs: function 4, address 0x0, 0x8 words , data_type = UINT16 = 0, 
+#drvModbusAsynConfigure("$(E1240_ASYNPORT)_AI", "$(E1240_ASYNPORT)", 0, 4, 0x000, 0x8, 0, 100, "ioLogik")
+
+# MOXA E1240 Current mode status: function 4, address 0x3c, 0x8 words , data_type = UINT16 = 0, 
+#drvModbusAsynConfigure("$(E1240_ASYNPORT)_AI_St", "$(E1240_ASYNPORT)", 0, 4, 0x3c, 0x8, 0, 500, "ioLogik")
+
+# MOXA E1240 Current mode settings read: function 3, address 0x18, 0x8 words , data_type = UINT16 = 0, 
+#drvModbusAsynConfigure("$(E1240_ASYNPORT)_AIMR", "$(E1240_ASYNPORT)", 0, 3, 0x18, 0x8, 0, 500, "ioLogik")
+
+# MOXA E1240 Current mode settings write: function 6, address 0x18, 0x8 words , data_type = UINT16 = 0, 
+#drvModbusAsynConfigure("$(E1240_ASYNPORT)_AIMW", "$(E1240_ASYNPORT)", 0, 6, 0x18, 0x8, 0, 1, "ioLogik")
+
+# MOXA E1240 Burn out value read (float - two words): function 3, address 0x28, 0x8 double words => 0x10, data_type = FLOAT32_LE = 7, 
+#drvModbusAsynConfigure("$(E1240_ASYNPORT)_BOR", "$(E1240_ASYNPORT)", 0, 3, 0x0028, 0x10, 7, 500, "ioLogik")
+
+# MOXA E1240 Burn out value write (float - two words): function 16 write multiple regs, address 0x28, 0x8 double words => 0x10 , data_type = FLOAT32_LE = 7, 
+#drvModbusAsynConfigure("$(E1240_ASYNPORT)_BOW", "$(E1240_ASYNPORT)", 0, 16, 0x0028, 0x10, 7, 1, "ioLogik")
+
+##################################
+
+# MOXA E1214 DIs (if NOT counter mode) : function 2 (Read Discrete Inputs), address 0x0, length 0x6, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
+#drvModbusAsynConfigure("$(E1214_ASYNPORT)_DI",             "$(E1214_ASYNPORT)", 0, 2, 0x0,   0x6, 0, 100, "ioLogik")
+
+# MOXA E1214 DIs (if counter mode: start/stop counter) : function 5 (Write Single Coil), address 0x0100, length 0x6, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
+#drvModbusAsynConfigure("$(E1214_ASYNPORT)_DICNT_S",        "$(E1214_ASYNPORT)", 0, 5, 0x0100,   0x6, 0, 1, "ioLogik")
+
+# MOXA E1214 DIs (if counter mode: start/stop counter) : function 1 (Read Coils), address 0x0100, length 0x6, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
+#drvModbusAsynConfigure("$(E1214_ASYNPORT)_DICNT_S_RBV",    "$(E1214_ASYNPORT)", 0, 1, 0x0100,   0x6, 0, 500, "ioLogik")
+
+# MOXA E1214 DIs (if counter mode: clear counter) : function 5 (Write Single Coil), address 0x0110, length 0x6, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
+# (RBV is always 0)
+#drvModbusAsynConfigure("$(E1214_ASYNPORT)_DICNT_CLR",      "$(E1214_ASYNPORT)", 0, 5, 0x0110,   0x6, 0, 1, "ioLogik")
+
+# MOXA E1214 DIs (if counter mode: counter value) : function 4 (Read Input Registers), address 0x0010, 0x6 double words => length 0xC, data_type = INT32_BE = 6, # pollMsec = for read func, waits XXX msecs
+#drvModbusAsynConfigure("$(E1214_ASYNPORT)_DICNT",          "$(E1214_ASYNPORT)", 0, 4, 0x0010,   0xC, 6, 500, "ioLogik")
+
+# MOXA E1214 Relay DOs (if NOT pulse mode) : function 5 (Write Single Coil), address 0x0, length 0x6, data_type = UINT16 = 0, # pollMsec = for write func (4,..) any non-zero val to read first
+#drvModbusAsynConfigure("$(E1214_ASYNPORT)_RelDO",          "$(E1214_ASYNPORT)", 0, 5, 0x0,   0x6, 0,   1, "ioLogik")
+
+# MOXA E1214 Relay DOs (if NOT pulse mode) : function 1 (Read Coils), address 0x0, length 0x6, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
+#drvModbusAsynConfigure("$(E1214_ASYNPORT)_RelDO_RBV",      "$(E1214_ASYNPORT)", 0, 1, 0x0,   0x6, 0, 100, "ioLogik")
+
+# MOXA E1214 Relay DOs (if pulse mode) : function 5 (Write Single Coil), address 0x10, length 0x6, data_type = UINT16 = 0, # pollMsec = for write func (4,..) any non-zero val to read first
+#drvModbusAsynConfigure("$(E1214_ASYNPORT)_RelDOPM",        "$(E1214_ASYNPORT)", 0, 5, 0x0010,   0x6, 0,   1, "ioLogik")
+
+# MOXA E1214 Relay DOs (if pulse mode) : function 1 (Read Coils), address 0x10, length 0x6, data_type = UINT16 = 0, # pollMsec = for write func (4,..) any non-zero val to read first
+#drvModbusAsynConfigure("$(E1214_ASYNPORT)_RelDOPM_RBV",    "$(E1214_ASYNPORT)", 0, 1, 0x0010,   0x6, 0,   100, "ioLogik")
+
+##################################
+
+# MOXA E1242 Watchdog Clear: function 5 (Write Single Coil), address 0x1030, length 0x1, data_type = UINT16 = 0, # pollMsec = for write func (4,..) any non-zero val to read first
+#drvModbusAsynConfigure("$(E1242_ASYNPORT)_WD_CLEAR", "$(E1242_ASYNPORT)", 0, 5, 0x1030,   0x1, 0,   1, "ioLogik")
+
+# MOXA E1242 Watchdog Status: function 1 (Read Coils), address 0x1030, length 0x1, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
+#drvModbusAsynConfigure("$(E1242_ASYNPORT)_WD_STATUS", "$(E1242_ASYNPORT)", 0, 1, 0x1030,   0x1, 0, 500, "ioLogik")
+
+# MOXA E1241 Watchdog Clear: function 5 (Write Single Coil), address 0x1030, length 0x1, data_type = UINT16 = 0, # pollMsec = for write func (4,..) any non-zero val to read first
+#drvModbusAsynConfigure("$(E1241_ASYNPORT)_WD_CLEAR", "$(E1241_ASYNPORT)", 0, 5, 0x1030,   0x1, 0,   1, "ioLogik")
+
+# MOXA E1241 Watchdog Status: function 1 (Read Coils), address 0x1030, length 0x1, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
+#drvModbusAsynConfigure("$(E1241_ASYNPORT)_WD_STATUS", "$(E1241_ASYNPORT)", 0, 1, 0x1030,   0x1, 0, 500, "ioLogik")
+
+# MOXA E1240 does not have Watchdog at all!
+#
+
+# MOXA E1214 Watchdog Clear: function 5 (Write Single Coil), address 0x1030, length 0x1, data_type = UINT16 = 0, # pollMsec = for write func (4,..) any non-zero val to read first
+#drvModbusAsynConfigure("$(E1214_ASYNPORT)_WD_CLEAR", "$(E1214_ASYNPORT)", 0, 5, 0x1030,   0x1, 0,   1, "ioLogik")
+
+# MOXA E1214 Watchdog Status: function 1 (Read Coils), address 0x1030, length 0x1, data_type = UINT16 = 0, # pollMsec = for read func, waits XXX msecs
+#drvModbusAsynConfigure("$(E1214_ASYNPORT)_WD_STATUS", "$(E1214_ASYNPORT)", 0, 1, 0x1030,   0x1, 0, 500, "ioLogik")
+
+
+##################################
+# modbus messages can be debuged here
+
+# Enable ASYN_TRACEIO_HEX on octet server
+# asynSetTraceIOMask("$(E1242_ASYNPORT)",0,4)
+# Enable ASYN_TRACE_ERROR and ASYN_TRACEIO_DRIVER on octet server
+# #asynSetTraceMask("$(E1242_ASYNPORT)",0,9)
+# Enable ASYN_TRACEIO_HEX on octet server
+# asynSetTraceIOMask("$(E1241_ASYNPORT)",0,4)
+# Enable ASYN_TRACE_ERROR and ASYN_TRACEIO_DRIVER on octet server
+# #asynSetTraceMask("$(E1241_ASYNPORT)",0,9)
+# Enable ASYN_TRACEIO_HEX on octet server
+# asynSetTraceIOMask("$(E1240_ASYNPORT)",0,4)
+# Enable ASYN_TRACE_ERROR and ASYN_TRACEIO_DRIVER on octet server
+# #asynSetTraceMask("$(E1240_ASYNPORT)",0,9)
+# Enable ASYN_TRACEIO_HEX on octet server
+# asynSetTraceIOMask("$(E1214_ASYNPORT)",0,4)
+# Enable ASYN_TRACE_ERROR and ASYN_TRACEIO_DRIVER on octet server
+# #asynSetTraceMask("$(E1214_ASYNPORT)",0,9)
+
+#asynSetTraceIOMask("$(E1242_ASYNPORT)_DO",0,4)
+#asynSetTraceMask("$(E1242_ASYNPORT)_DO",0,9)
+#asynSetTraceIOMask("$(E1242_ASYNPORT)_DO_RBV",0,4)
+#asynSetTraceMask("$(E1242_ASYNPORT)_DO_RBV",0,9)
+#asynSetTraceIOMask("$(E1242_ASYNPORT)_DI",0,4)
+#asynSetTraceMask("$(E1242_ASYNPORT)_DI",0,9)
+#asynSetTraceIOMask("$(E1242_ASYNPORT)_AI",0,4)
+#asynSetTraceMask("$(E1242_ASYNPORT)_AI",0,9)
+#asynSetTraceIOMask("$(E1242_ASYNPORT)_AI_St",0,4)
+#asynSetTraceMask("$(E1242_ASYNPORT)_AI_St",0,9)
+#asynSetTraceIOMask("$(E1242_ASYNPORT)_AIMR",0,4)
+#asynSetTraceMask("$(E1242_ASYNPORT)_AIMR",0,9)
+#asynSetTraceIOMask("$(E1242_ASYNPORT)_AIMW",0,4)
+#asynSetTraceMask("$(E1242_ASYNPORT)_AIMW",0,9)
+#asynSetTraceIOMask("$(E1242_ASYNPORT)_BOR",0,4)
+#asynSetTraceMask("$(E1242_ASYNPORT)_BOR",0,9)
+#asynSetTraceIOMask("$(E1242_ASYNPORT)_BOW",0,4)
+#asynSetTraceMask("$(E1242_ASYNPORT)_BOW",0,9)
+#asynSetTraceIOMask("$(E1242_ASYNPORT)_WD_CLEAR",0,4)
+#asynSetTraceMask("$(E1242_ASYNPORT)_WD_CLEAR",0,9)
+#asynSetTraceIOMask("$(E1242_ASYNPORT)_WD_STATUS",0,4)
+#asynSetTraceMask("$(E1242_ASYNPORT)_WD_STATUS",0,9)
+
+#asynSetTraceIOMask("$(E1241_ASYNPORT)_AO",0,4)
+#asynSetTraceMask("$(E1241_ASYNPORT)_AO",0,9)
+#asynSetTraceIOMask("$(E1241_ASYNPORT)_WD_CLEAR",0,4)
+#asynSetTraceMask("$(E1241_ASYNPORT)_WD_CLEAR",0,9)
+#asynSetTraceIOMask("$(E1241_ASYNPORT)_WD_STATUS",0,4)
+#asynSetTraceMask("$(E1241_ASYNPORT)_WD_STATUS",0,9)
+
+#asynSetTraceIOMask("$(E1240_ASYNPORT)_AI",0,4)
+#asynSetTraceMask("$(E1240_ASYNPORT)_AI",0,9)
+#asynSetTraceIOMask("$(E1240_ASYNPORT)_AI_St",0,4)
+#asynSetTraceMask("$(E1240_ASYNPORT)_AI_St",0,9)
+#asynSetTraceIOMask("$(E1240_ASYNPORT)_AIMR",0,4)
+#asynSetTraceMask("$(E1240_ASYNPORT)_AIMR",0,9)
+#asynSetTraceIOMask("$(E1240_ASYNPORT)_AIMW",0,4)
+#asynSetTraceMask("$(E1240_ASYNPORT)_AIMW",0,9)
+#asynSetTraceIOMask("$(E1240_ASYNPORT)_BOR",0,4)
+#asynSetTraceMask("$(E1240_ASYNPORT)_BOR",0,9)
+#asynSetTraceIOMask("$(E1240_ASYNPORT)_BOW",0,4)
+#asynSetTraceMask("$(E1240_ASYNPORT)_BOW",0,9)
+
+#asynSetTraceIOMask("$(E1214_ASYNPORT)_RelDO",0,4)
+#asynSetTraceMask("$(E1214_ASYNPORT)_RelDO",0,9)
+#asynSetTraceIOMask("$(E1214_ASYNPORT)_RelDO_RBV",0,4)
+#asynSetTraceMask("$(E1214_ASYNPORT)_RelDO_RBV",0,9)
+#asynSetTraceIOMask("$(E1214_ASYNPORT)_DI",0,4)
+#asynSetTraceMask("$(E1214_ASYNPORT)_DI",0,9)
+#asynSetTraceIOMask("$(E1214_ASYNPORT)_DICNT_S",0,4)
+#asynSetTraceMask("$(E1214_ASYNPORT)_DICNT_S",0,9)
+#asynSetTraceIOMask("$(E1214_ASYNPORT)_DICNT_S_RBV",0,4)
+#asynSetTraceMask("$(E1214_ASYNPORT)_DICNT_S_RBV",0,9)
+#asynSetTraceIOMask("$(E1214_ASYNPORT)_DICNT_CLR",0,4)
+#asynSetTraceMask("$(E1214_ASYNPORT)_DICNT_CLR",0,9)
+#asynSetTraceIOMask("$(E1214_ASYNPORT)_DICNT",0,4)
+#asynSetTraceMask("$(E1214_ASYNPORT)_DICNT",0,9)
+#asynSetTraceIOMask("$(E1214_ASYNPORT)_WD_CLEAR",0,4)
+#asynSetTraceMask("$(E1214_ASYNPORT)_WD_CLEAR",0,9)
+#asynSetTraceIOMask("$(E1214_ASYNPORT)_WD_STATUS",0,4)
+#asynSetTraceMask("$(E1214_ASYNPORT)_WD_STATUS",0,9)
+
+# ###################################################################
+# ###################################################################
+#
+# comment out lines in particular substitutions-files in TOP/MX_E12xx_ModbusIOCApp/Db  and make rebuild
+#dbLoadRecords("../../db/ioLogik_E1242.db","NAME=$(SYSNAME), ASYNPORT=$(E1242_ASYNPORT)")
+#dbLoadRecords("../../db/ioLogik_E1242-addons.db","NAME=$(SYSNAME), ASYNPORT=$(E1242_ASYNPORT)")
+#dbLoadRecords("../../db/ioLogik_E1241.db","NAME=$(SYSNAME), ASYNPORT=$(E1241_ASYNPORT)")
+#dbLoadRecords("../../db/ioLogik_E1241-addons.db","NAME=$(SYSNAME), ASYNPORT=$(E1241_ASYNPORT)")
+#dbLoadRecords("../../db/ioLogik_E1240.db","NAME=$(SYSNAME), ASYNPORT=$(E1240_ASYNPORT)")
+#dbLoadRecords("../../db/ioLogik_E1214-addons.db","NAME=$(SYSNAME), ASYNPORT=$(E1214_ASYNPORT)")
+#dbLoadRecords("../../db/ioLogik_E1214.db","NAME=$(SYSNAME), ASYNPORT=$(E1214_ASYNPORT)")
+
+# Application (not ioLogik itself) dependent addons go here, e.g.: archiver deadband (ADEL) field settings
+# dbLoadRecords("MX_E12xx_app_dep_addons.template","NAME=$(SYSNAME), ASYNPORT=$(E1242_ASYNPORT)")
+# dbLoadRecords("MX_E12xx_app_dep_addons.template","NAME=$(SYSNAME), ASYNPORT=$(E1241_ASYNPORT)")
+# dbLoadRecords("MX_E12xx_app_dep_addons.template","NAME=$(SYSNAME), ASYNPORT=$(E1240_ASYNPORT)")
+# dbLoadRecords("MX_E12xx_app_dep_addons.template","NAME=$(SYSNAME), ASYNPORT=$(E1214_ASYNPORT)")
+
+

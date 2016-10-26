@@ -1,0 +1,113 @@
+## example for E1242 , its 4 analog inputs
+
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH0_VAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH1_VAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH2_VAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH3_VAL") {
+    field(ADEL, "0.01")
+}
+
+
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH0_AVAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH1_AVAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH2_AVAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH3_AVAL") {
+    field(ADEL, "0.01")
+}
+
+
+## example for E1240 , its 8 analog inputs
+
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH0_VAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH1_VAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH2_VAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH3_VAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH4_VAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH5_VAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH6_VAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH7_VAL") {
+    field(ADEL, "0.01")
+}
+
+
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH0_AVAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH1_AVAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH2_AVAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH3_AVAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH4_AVAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH5_AVAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH6_AVAL") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AI_CH7_AVAL") {
+    field(ADEL, "0.01")
+}
+
+
+## example for E1241 , its 4 analog outputs
+
+record(ao, "$(NAME):$(ASYNPORT)_AO_CH0_VAL") {
+    field(ADEL, "0.01")
+}
+record(ao, "$(NAME):$(ASYNPORT)_AO_CH1_VAL") {
+    field(ADEL, "0.01")
+}
+record(ao, "$(NAME):$(ASYNPORT)_AO_CH2_VAL") {
+    field(ADEL, "0.01")
+}
+record(ao, "$(NAME):$(ASYNPORT)_AO_CH3_VAL") {
+    field(ADEL, "0.01")
+}
+
+
+record(ai, "$(NAME):$(ASYNPORT)_AO_CH0_VAL_RBV") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AO_CH1_VAL_RBV") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AO_CH2_VAL_RBV") {
+    field(ADEL, "0.01")
+}
+record(ai, "$(NAME):$(ASYNPORT)_AO_CH3_VAL_RBV") {
+    field(ADEL, "0.01")
+}
+

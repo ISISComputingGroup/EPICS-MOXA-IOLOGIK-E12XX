@@ -1,0 +1,99 @@
+# ##############################################################################
+# ##############################################################################
+
+# asyn record for the underlying asyn octet port
+file "$(ASYN)/db/asynRecord.db" { pattern
+{P,                      R, PORT, ADDR,    IMAX,    OMAX}
+{$(NAME):, $(ASYNPORT)_OctetAsyn, $(ASYNPORT),   0,      80,      80}
+}
+
+# ##############################################################################
+# ##############################################################################
+
+file "longout.template" { pattern
+{P,           R,          PORT,          OFFSET}
+{$(NAME):,    $(ASYNPORT)_AO_CH0,     $(ASYNPORT)_AO,     0}
+{$(NAME):,    $(ASYNPORT)_AO_CH1,     $(ASYNPORT)_AO,     1}
+{$(NAME):,    $(ASYNPORT)_AO_CH2,     $(ASYNPORT)_AO,     2}
+{$(NAME):,    $(ASYNPORT)_AO_CH3,     $(ASYNPORT)_AO,     3}
+}
+
+file "ao.template" { pattern
+{P,           R,        PORT,       OFFSET, BITS, EGUL,  EGUF, PREC}
+{$(NAME):, $(ASYNPORT)_AO_CH0_VAL,  $(ASYNPORT)_AO, 0,      12,   0.,    10.,  3}
+{$(NAME):, $(ASYNPORT)_AO_CH1_VAL,  $(ASYNPORT)_AO, 1,      12,   0.,    10.,  3}
+{$(NAME):, $(ASYNPORT)_AO_CH2_VAL,  $(ASYNPORT)_AO, 2,      12,   0.,    10.,  3}
+{$(NAME):, $(ASYNPORT)_AO_CH3_VAL,  $(ASYNPORT)_AO, 3,      12,   0.,    10.,  3}
+}
+
+file "longin.template" { pattern
+{P,           R,        PORT,           OFFSET,   SCAN}
+{$(NAME):, $(ASYNPORT)_AO_CH0_RBV,    $(ASYNPORT)_AO_RBV,     0,       "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_AO_CH1_RBV,    $(ASYNPORT)_AO_RBV,     1,       "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_AO_CH2_RBV,    $(ASYNPORT)_AO_RBV,     2,       "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_AO_CH3_RBV,    $(ASYNPORT)_AO_RBV,     3,       "I/O Intr"}
+}
+
+file "ai.template" { pattern
+{P,           R,            PORT,           OFFSET, BITS, EGUL,  EGUF, PREC, SCAN}
+{$(NAME):, $(ASYNPORT)_AO_CH0_VAL_RBV,  $(ASYNPORT)_AO_RBV, 0,      12,   0.,    10.,  3,    "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_AO_CH1_VAL_RBV,  $(ASYNPORT)_AO_RBV, 1,      12,   0.,    10.,  3,    "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_AO_CH2_VAL_RBV,  $(ASYNPORT)_AO_RBV, 2,      12,   0.,    10.,  3,    "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_AO_CH3_VAL_RBV,  $(ASYNPORT)_AO_RBV, 3,      12,   0.,    10.,  3,    "I/O Intr"}
+}
+
+
+#file "asynRecord.template" { pattern
+#{P,           R,          PORT,              ADDR,        TMOD,  IFACE}
+#{$(NAME):, $(ASYNPORT)_AO_CHx_Asyn, $(ASYNPORT)_AO,     0,        Write,  asynInt32}
+#}
+
+file "statistics.template" { pattern
+{P,           R,          PORT,              SCAN}
+{$(NAME):, $(ASYNPORT)_AO_CHx_,     $(ASYNPORT)_AO,  "10 second"}
+}
+
+#file "asynRecord.template" { pattern
+#{P,           R,          PORT,              ADDR,        TMOD,  IFACE}
+#{$(NAME):, $(ASYNPORT)_AO_RBV_CHx_Asyn, $(ASYNPORT)_AO_RBV,     0,        Write,  asynInt32}
+#}
+
+file "statistics.template" { pattern
+{P,           R,          PORT,              SCAN}
+{$(NAME):, $(ASYNPORT)_AO_RBV_CHx_,     $(ASYNPORT)_AO_RBV,  "10 second"}
+}
+
+
+file "poll_delay.template" { pattern
+{P,           R,               PORT}
+{$(NAME):, $(ASYNPORT)_AO_RBV_CHx_PollDelay, $(ASYNPORT)_AO_RBV}
+}
+
+# ##############################################################################
+# ##############################################################################
+
+file "bo_bit.template" { pattern
+{P,           R,          PORT,          OFFSET,   ZNAM,   ONAM}
+{$(NAME):, $(ASYNPORT)_WD_CLEAR,     $(ASYNPORT)_WD_CLEAR,     0,        Low,    High}
+}
+
+file "bi_bit.template" { pattern
+{P,           R,         PORT,           OFFSET,   ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
+{$(NAME):, $(ASYNPORT)_WD_STATUS,     $(ASYNPORT)_WD_STATUS,     0,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+}
+
+file "statistics.template" { pattern
+{P,           R,         PORT,          SCAN}
+{$(NAME):, $(ASYNPORT)_WD_CLEAR_,  $(ASYNPORT)_WD_CLEAR,  "10 second"}
+}
+
+file "statistics.template" { pattern
+{P,           R,         PORT,          SCAN}
+{$(NAME):, $(ASYNPORT)_WD_STATUS_,  $(ASYNPORT)_WD_STATUS,  "10 second"}
+}
+
+file "poll_delay.template" { pattern
+{P,           R,              PORT}
+{$(NAME):, $(ASYNPORT)_WD_STATUS_PollDelay, $(ASYNPORT)_WD_STATUS}
+}
+

@@ -1,0 +1,265 @@
+# ##############################################################################
+# ##############################################################################
+
+# asyn record for the underlying asyn octet port
+file "$(ASYN)/db/asynRecord.db" { pattern
+{P,                      R, PORT, ADDR,    IMAX,    OMAX}
+{$(NAME):, $(ASYNPORT)_OctetAsyn, $(ASYNPORT),   0,      80,      80}
+}
+
+# ##############################################################################
+# DIs in "DI mode" (default)
+# ##############################################################################
+
+file "bi_bit.template" { pattern
+{P,           R,         PORT,           OFFSET,   ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
+{$(NAME):, $(ASYNPORT)_DI_CH0,     $(ASYNPORT)_DI,     0,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH1,     $(ASYNPORT)_DI,     1,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH2,     $(ASYNPORT)_DI,     2,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH3,     $(ASYNPORT)_DI,     3,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH4,     $(ASYNPORT)_DI,     4,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH5,     $(ASYNPORT)_DI,     5,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+}
+
+# file "asynRecord.template" { pattern
+# {P,           R,          PORT,           ADDR,     TMOD,  IFACE}
+# {$(NAME):, $(ASYNPORT)_DI_CHx_Asyn, $(ASYNPORT)_DI,     0,        Read,  asynUInt32Digital}
+# }
+# 
+file "statistics.template" { pattern
+{P,           R,         PORT,          SCAN}
+{$(NAME):, $(ASYNPORT)_DI_CHx_,     $(ASYNPORT)_DI,  "10 second"}
+}
+ 
+file "poll_delay.template" { pattern
+{P,           R,              PORT}
+{$(NAME):, $(ASYNPORT)_DI_CHx_PollDelay, $(ASYNPORT)_DI}
+}
+
+# ##############################################################################
+# DIs in "Counter mode" (must be set in FW per a specific DI channel)
+# ##############################################################################
+
+file "bo_bit.template" { pattern
+{P,           R,          PORT,          OFFSET,   ZNAM,   ONAM}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH0,     $(ASYNPORT)_DICNT_S,     0,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH1,     $(ASYNPORT)_DICNT_S,     1,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH2,     $(ASYNPORT)_DICNT_S,     2,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH3,     $(ASYNPORT)_DICNT_S,     3,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH4,     $(ASYNPORT)_DICNT_S,     4,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH5,     $(ASYNPORT)_DICNT_S,     5,        Low,    High}
+}
+
+# file "asynRecord.template" { pattern
+# {P,           R,          PORT,           ADDR,     TMOD,  IFACE}
+# {$(NAME):, $(ASYNPORT)_DICNT_S_CHx_Asyn, $(ASYNPORT)_DICNT_S,     0,        Write,  asynUInt32Digital}
+# }
+
+file "statistics.template" { pattern
+{P,           R,          PORT,           SCAN}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CHx_,     $(ASYNPORT)_DICNT_S,  "10 second"}
+}
+
+file "bi_bit.template" { pattern
+{P,           R,         PORT,              OFFSET,  ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH0_RBV,     $(ASYNPORT)_DICNT_S_RBV,     0,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH1_RBV,     $(ASYNPORT)_DICNT_S_RBV,     1,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH2_RBV,     $(ASYNPORT)_DICNT_S_RBV,     2,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH3_RBV,     $(ASYNPORT)_DICNT_S_RBV,     3,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH4_RBV,     $(ASYNPORT)_DICNT_S_RBV,     4,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DICNT_S_CH5_RBV,     $(ASYNPORT)_DICNT_S_RBV,     5,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+}
+
+# file "asynRecord.template" { pattern
+# {P,           R,          PORT,           ADDR,     TMOD,  IFACE}
+# {$(NAME):, $(ASYNPORT)_DICNT_S_RBV_CHx_Asyn, $(ASYNPORT)_DICNT_S_RBV,     0,        Read,  asynUInt32Digital}
+# }
+# 
+file "statistics.template" { pattern
+{P,           R,         PORT,          SCAN}
+{$(NAME):, $(ASYNPORT)_DICNT_S_RBV_CHx_,     $(ASYNPORT)_DICNT_S_RBV,  "10 second"}
+}
+ 
+file "poll_delay.template" { pattern
+{P,           R,              PORT}
+{$(NAME):, $(ASYNPORT)_DICNT_S_RBV_CHx_PollDelay, $(ASYNPORT)_DICNT_S_RBV}
+}
+
+
+file "bo_bit.template" { pattern
+{P,           R,          PORT,          OFFSET,   ZNAM,   ONAM}
+{$(NAME):, $(ASYNPORT)_DICNT_CLR_CH0,     $(ASYNPORT)_DICNT_CLR,     0,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DICNT_CLR_CH1,     $(ASYNPORT)_DICNT_CLR,     1,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DICNT_CLR_CH2,     $(ASYNPORT)_DICNT_CLR,     2,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DICNT_CLR_CH3,     $(ASYNPORT)_DICNT_CLR,     3,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DICNT_CLR_CH4,     $(ASYNPORT)_DICNT_CLR,     4,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DICNT_CLR_CH5,     $(ASYNPORT)_DICNT_CLR,     5,        Low,    High}
+}
+
+# file "asynRecord.template" { pattern
+# {P,           R,          PORT,           ADDR,     TMOD,  IFACE}
+# {$(NAME):, $(ASYNPORT)_DICNT_CLR_CHx_Asyn, $(ASYNPORT)_DICNT_CLR,     0,        Write,  asynUInt32Digital}
+# }
+
+file "statistics.template" { pattern
+{P,           R,          PORT,           SCAN}
+{$(NAME):, $(ASYNPORT)_DICNT_CLR_CHx_,     $(ASYNPORT)_DICNT_CLR,  "10 second"}
+}
+
+file "longinInt32.template" { pattern
+{P,        R,                      PORT,              OFFSET, DATA_TYPE, SCAN}
+{$(NAME):, $(ASYNPORT)_DICNT_CH0,  $(ASYNPORT)_DICNT, 0,      INT32_BE,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DICNT_CH1,  $(ASYNPORT)_DICNT, 2,      INT32_BE,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DICNT_CH2,  $(ASYNPORT)_DICNT, 4,      INT32_BE,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DICNT_CH3,  $(ASYNPORT)_DICNT, 6,      INT32_BE,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DICNT_CH4,  $(ASYNPORT)_DICNT, 8,      INT32_BE,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DICNT_CH5,  $(ASYNPORT)_DICNT, 0xA,    INT32_BE,  "I/O Intr"}
+}
+
+# file "asynRecord.template" { pattern
+# {P,           R,          PORT,           ADDR,     TMOD,  IFACE}
+# {$(NAME):, $(ASYNPORT)_DICNT_CHx_Asyn, $(ASYNPORT)_DICNT,     0,        Read,  asynUInt32Digital}
+# }
+# 
+file "statistics.template" { pattern
+{P,           R,         PORT,          SCAN}
+{$(NAME):, $(ASYNPORT)_DICNT_CHx_,     $(ASYNPORT)_DICNT,  "10 second"}
+}
+ 
+file "poll_delay.template" { pattern
+{P,           R,              PORT}
+{$(NAME):, $(ASYNPORT)_DICNT_CHx_PollDelay, $(ASYNPORT)_DICNT}
+}
+
+
+# ##############################################################################
+# DOs in "DO mode" (default)
+# ##############################################################################
+
+
+file "bo_bit.template" { pattern
+{P,           R,          PORT,          OFFSET,   ZNAM,   ONAM}
+{$(NAME):, $(ASYNPORT)_RelDO_CH0,     $(ASYNPORT)_RelDO,     0,        Low,    High}
+{$(NAME):, $(ASYNPORT)_RelDO_CH1,     $(ASYNPORT)_RelDO,     1,        Low,    High}
+{$(NAME):, $(ASYNPORT)_RelDO_CH2,     $(ASYNPORT)_RelDO,     2,        Low,    High}
+{$(NAME):, $(ASYNPORT)_RelDO_CH3,     $(ASYNPORT)_RelDO,     3,        Low,    High}
+{$(NAME):, $(ASYNPORT)_RelDO_CH4,     $(ASYNPORT)_RelDO,     4,        Low,    High}
+{$(NAME):, $(ASYNPORT)_RelDO_CH5,     $(ASYNPORT)_RelDO,     5,        Low,    High}
+}
+
+file "bi_bit.template" { pattern
+{P,           R,             PORT,           OFFSET,   ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
+{$(NAME):, $(ASYNPORT)_RelDO_CH0_RBV, $(ASYNPORT)_RelDO_RBV,     0,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_RelDO_CH1_RBV, $(ASYNPORT)_RelDO_RBV,     1,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_RelDO_CH2_RBV, $(ASYNPORT)_RelDO_RBV,     2,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_RelDO_CH3_RBV, $(ASYNPORT)_RelDO_RBV,     3,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_RelDO_CH4_RBV, $(ASYNPORT)_RelDO_RBV,     4,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_RelDO_CH5_RBV, $(ASYNPORT)_RelDO_RBV,     5,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+}
+
+# file "asynRecord.template" { pattern
+# {P,           R,          PORT,           ADDR,     TMOD,  IFACE}
+# {$(NAME):, $(ASYNPORT)_RelDO_CHx_Asyn, $(ASYNPORT)_RelDO,     0,        Write,  asynUInt32Digital}
+# }
+
+# file "asynRecord.template" { pattern
+# {P,           R,          PORT,           ADDR,     TMOD,  IFACE}
+# {$(NAME):, $(ASYNPORT)_RelDO_RBV_CHx_Asyn, $(ASYNPORT)_RelDO_RBV,     0,        Read,  asynUInt32Digital}
+# }
+
+
+file "statistics.template" { pattern
+{P,           R,          PORT,           SCAN}
+{$(NAME):, $(ASYNPORT)_RelDO_CHx_,     $(ASYNPORT)_RelDO,  "10 second"}
+}
+
+file "statistics.template" { pattern
+{P,           R,          PORT,           SCAN}
+{$(NAME):, $(ASYNPORT)_RelDO_RBV_CHx_,     $(ASYNPORT)_RelDO_RBV,  "10 second"}
+}
+
+file "poll_delay.template" { pattern
+{P,           R,               PORT}
+{$(NAME):, $(ASYNPORT)_RelDO_RBV_CHx_PollDelay, $(ASYNPORT)_RelDO_RBV}
+}
+
+# ##############################################################################
+# DOs in "Pulse output mode" (must be configure in FW per a specific DO channel)
+# ##############################################################################
+
+file "bo_bit.template" { pattern
+{P,           R,          PORT,          OFFSET,   ZNAM,   ONAM}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH0,     $(ASYNPORT)_RelDOPM,     0,        Low,    High}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH1,     $(ASYNPORT)_RelDOPM,     1,        Low,    High}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH2,     $(ASYNPORT)_RelDOPM,     2,        Low,    High}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH3,     $(ASYNPORT)_RelDOPM,     3,        Low,    High}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH4,     $(ASYNPORT)_RelDOPM,     4,        Low,    High}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH5,     $(ASYNPORT)_RelDOPM,     5,        Low,    High}
+}
+
+file "bi_bit.template" { pattern
+{P,           R,             PORT,           OFFSET,   ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH0_RBV, $(ASYNPORT)_RelDOPM_RBV,     0,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH1_RBV, $(ASYNPORT)_RelDOPM_RBV,     1,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH2_RBV, $(ASYNPORT)_RelDOPM_RBV,     2,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH3_RBV, $(ASYNPORT)_RelDOPM_RBV,     3,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH4_RBV, $(ASYNPORT)_RelDOPM_RBV,     4,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CH5_RBV, $(ASYNPORT)_RelDOPM_RBV,     5,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+}
+
+# file "asynRecord.template" { pattern
+# {P,           R,          PORT,           ADDR,     TMOD,  IFACE}
+# {$(NAME):, $(ASYNPORT)_RelDOPM_CHx_Asyn, $(ASYNPORT)_RelDOPM,     0,        Write,  asynUInt32Digital}
+# }
+
+# file "asynRecord.template" { pattern
+# {P,           R,          PORT,           ADDR,     TMOD,  IFACE}
+# {$(NAME):, $(ASYNPORT)_RelDOPM_RBV_CHx_Asyn, $(ASYNPORT)_RelDOPM_RBV,     0,        Read,  asynUInt32Digital}
+# }
+
+
+file "statistics.template" { pattern
+{P,           R,          PORT,           SCAN}
+{$(NAME):, $(ASYNPORT)_RelDOPM_CHx_,     $(ASYNPORT)_RelDOPM,  "10 second"}
+}
+
+file "statistics.template" { pattern
+{P,           R,          PORT,           SCAN}
+{$(NAME):, $(ASYNPORT)_RelDOPM_RBV_CHx_,     $(ASYNPORT)_RelDOPM_RBV,  "10 second"}
+}
+
+file "poll_delay.template" { pattern
+{P,           R,               PORT}
+{$(NAME):, $(ASYNPORT)_RelDOPM_RBV_CHx_PollDelay, $(ASYNPORT)_RelDOPM_RBV}
+}
+
+# ##############################################################################
+# watchdog
+# ##############################################################################
+
+file "bo_bit.template" { pattern
+{P,           R,          PORT,          OFFSET,   ZNAM,   ONAM}
+{$(NAME):, $(ASYNPORT)_WD_CLEAR,     $(ASYNPORT)_WD_CLEAR,     0,        Low,    High}
+}
+
+file "bi_bit.template" { pattern
+{P,           R,         PORT,           OFFSET,   ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
+{$(NAME):, $(ASYNPORT)_WD_STATUS,     $(ASYNPORT)_WD_STATUS,     0,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+}
+
+file "statistics.template" { pattern
+{P,           R,         PORT,          SCAN}
+{$(NAME):, $(ASYNPORT)_WD_CLEAR_,  $(ASYNPORT)_WD_CLEAR,  "10 second"}
+}
+
+file "statistics.template" { pattern
+{P,           R,         PORT,          SCAN}
+{$(NAME):, $(ASYNPORT)_WD_STATUS_,  $(ASYNPORT)_WD_STATUS,  "10 second"}
+}
+
+file "poll_delay.template" { pattern
+{P,           R,              PORT}
+{$(NAME):, $(ASYNPORT)_WD_STATUS_PollDelay, $(ASYNPORT)_WD_STATUS}
+}
+
+

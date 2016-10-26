@@ -1,0 +1,16 @@
+
+# dbpf $(SYSNAME):output 0
+
+# dbpf $(SYSNAME):$(E1242_ASYNPORT)_WD_CLEAR 1
+# dbpf $(SYSNAME):$(E1241_ASYNPORT)_WD_CLEAR 1
+# dbpf $(SYSNAME):$(E1214_ASYNPORT)_WD_CLEAR 1
+
+
+
+
+
+
+
+
+
+
