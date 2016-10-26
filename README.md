@@ -10,3 +10,11 @@ In CSS directory, a few Control System Studio GUI files can be found.
 Before compiling the IOC, modify configure/RELEASE file to match directory paths of your EPICS-base and support distribution.
 Before running, modify st.cmd -- uncomment lines for a specific module. Mind to match an IP address of connected E1200 series module.
 
+Supported modules list:
+  * ioLogik E1214 (6xRelayDO, 6xDI)
+  * ioLogik E1240 (8xAI)
+  * ioLogik E1241 (4xAO)
+  * ioLogik E1242 (4xAI, 4xDI, 4xDIO)
+
+ioLogik E1260 (6x RTD) is supported by https://gitlab.com/LBCS-ELI-BL/epics-ioc-moxa-e1260_pub.git
+
