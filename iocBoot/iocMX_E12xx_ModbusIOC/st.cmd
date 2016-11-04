@@ -15,6 +15,7 @@ cd ${TOP}/iocBoot/${IOC}
 
 < startup.script
 iocInit()
+< startup.postscript
 
 # has to wait for a second !
 epicsThreadSleep 1
