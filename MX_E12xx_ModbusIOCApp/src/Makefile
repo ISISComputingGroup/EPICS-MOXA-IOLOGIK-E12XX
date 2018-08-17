@@ -20,7 +20,6 @@ MX_E12xx_ModbusIOC_DBD += base.dbd
 # Include dbd files from all support applications:
 MX_E12xx_ModbusIOC_DBD += asyn.dbd
 MX_E12xx_ModbusIOC_DBD += drvAsynIPPort.dbd
-# MX_E12xx_ModbusIOC_DBD += modbus.dbd
 MX_E12xx_ModbusIOC_DBD += modbusSupport.dbd
 
 # Add all the support libraries needed by this IOC

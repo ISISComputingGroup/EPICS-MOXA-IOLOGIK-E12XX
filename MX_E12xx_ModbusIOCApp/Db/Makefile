@@ -11,7 +11,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
 #DB += dbExampleDB.db
-# DB += ioLogik_E1210.db
+ DB += ioLogik_E1210.db
 # DB += ioLogik_E1241.db
 # DB += ioLogik_E1241-addons.db
 # DB += ioLogik_E1242.db
