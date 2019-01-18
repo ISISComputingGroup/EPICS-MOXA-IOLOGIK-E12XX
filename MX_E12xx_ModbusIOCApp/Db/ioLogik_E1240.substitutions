@@ -4,7 +4,7 @@
 # asyn record for the underlying asyn octet port
 file "$(ASYN)/db/asynRecord.db" { pattern
 {P,                      R, PORT, ADDR,    IMAX,    OMAX}
-{$(NAME):, $(ASYNPORT)_OctetAsyn, $(ASYNPORT),   0,      80,      80}
+{"\$(NAME):", "\$(ASYNPORT)_OctetAsyn", "\$(ASYNPORT)",   0,      80,      80}
 }
 
 # ##############################################################################
@@ -14,66 +14,66 @@ file "$(ASYN)/db/asynRecord.db" { pattern
 
 file "longin.template" { pattern
 {P,           R,        PORT,           OFFSET,   SCAN}
-{$(NAME):, $(ASYNPORT)_AI_CH0,    $(ASYNPORT)_AI,     0,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH1,    $(ASYNPORT)_AI,     1,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH2,    $(ASYNPORT)_AI,     2,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH3,    $(ASYNPORT)_AI,     3,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH4,    $(ASYNPORT)_AI,     4,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH5,    $(ASYNPORT)_AI,     5,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH6,    $(ASYNPORT)_AI,     6,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH7,    $(ASYNPORT)_AI,     7,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH0",    "\$(ASYNPORT)_AI",     0,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH1",    "\$(ASYNPORT)_AI",     1,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH2",    "\$(ASYNPORT)_AI",     2,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH3",    "\$(ASYNPORT)_AI",     3,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH4",    "\$(ASYNPORT)_AI",     4,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH5",    "\$(ASYNPORT)_AI",     5,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH6",    "\$(ASYNPORT)_AI",     6,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH7",    "\$(ASYNPORT)_AI",     7,       "I/O Intr"}
 }
 
 # 0-10 Volts mode
 
 file "ai.template" { pattern
 {P,           R,        PORT,       OFFSET, BITS, EGUL,  EGUF, PREC, SCAN}
-{$(NAME):, $(ASYNPORT)_AI_CH0_VAL,  $(ASYNPORT)_AI, 0,      16,   0.,    10.,  3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH1_VAL,  $(ASYNPORT)_AI, 1,      16,   0.,    10.,  3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH2_VAL,  $(ASYNPORT)_AI, 2,      16,   0.,    10.,  3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH3_VAL,  $(ASYNPORT)_AI, 3,      16,   0.,    10.,  3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH4_VAL,  $(ASYNPORT)_AI, 4,      16,   0.,    10.,  3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH5_VAL,  $(ASYNPORT)_AI, 5,      16,   0.,    10.,  3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH6_VAL,  $(ASYNPORT)_AI, 6,      16,   0.,    10.,  3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH7_VAL,  $(ASYNPORT)_AI, 7,      16,   0.,    10.,  3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH0_VAL",  "\$(ASYNPORT)_AI", 0,      16,   0.,    10.,  3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH1_VAL",  "\$(ASYNPORT)_AI", 1,      16,   0.,    10.,  3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH2_VAL",  "\$(ASYNPORT)_AI", 2,      16,   0.,    10.,  3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH3_VAL",  "\$(ASYNPORT)_AI", 3,      16,   0.,    10.,  3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH4_VAL",  "\$(ASYNPORT)_AI", 4,      16,   0.,    10.,  3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH5_VAL",  "\$(ASYNPORT)_AI", 5,      16,   0.,    10.,  3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH6_VAL",  "\$(ASYNPORT)_AI", 6,      16,   0.,    10.,  3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH7_VAL",  "\$(ASYNPORT)_AI", 7,      16,   0.,    10.,  3,    "I/O Intr"}
 }
 
 file "ai_average.template" { pattern
 {P,           R,        PORT,       OFFSET, BITS, EGUL,  EGUF, PREC, SCAN}
-{$(NAME):, $(ASYNPORT)_AI_CH0_AVAL, $(ASYNPORT)_AI, 0,      16,   0.,    10.,  3,    "1 second"}
-{$(NAME):, $(ASYNPORT)_AI_CH1_AVAL, $(ASYNPORT)_AI, 1,      16,   0.,    10.,  3,    "1 second"}
-{$(NAME):, $(ASYNPORT)_AI_CH2_AVAL, $(ASYNPORT)_AI, 2,      16,   0.,    10.,  3,    "1 second"}
-{$(NAME):, $(ASYNPORT)_AI_CH3_AVAL, $(ASYNPORT)_AI, 3,      16,   0.,    10.,  3,    "1 second"}
-{$(NAME):, $(ASYNPORT)_AI_CH4_AVAL, $(ASYNPORT)_AI, 4,      16,   0.,    10.,  3,    "1 second"}
-{$(NAME):, $(ASYNPORT)_AI_CH5_AVAL, $(ASYNPORT)_AI, 5,      16,   0.,    10.,  3,    "1 second"}
-{$(NAME):, $(ASYNPORT)_AI_CH6_AVAL, $(ASYNPORT)_AI, 6,      16,   0.,    10.,  3,    "1 second"}
-{$(NAME):, $(ASYNPORT)_AI_CH7_AVAL, $(ASYNPORT)_AI, 7,      16,   0.,    10.,  3,    "1 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH0_AVAL", "\$(ASYNPORT)_AI", 0,      16,   0.,    10.,  3,    "1 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH1_AVAL", "\$(ASYNPORT)_AI", 1,      16,   0.,    10.,  3,    "1 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH2_AVAL", "\$(ASYNPORT)_AI", 2,      16,   0.,    10.,  3,    "1 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH3_AVAL", "\$(ASYNPORT)_AI", 3,      16,   0.,    10.,  3,    "1 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH4_AVAL", "\$(ASYNPORT)_AI", 4,      16,   0.,    10.,  3,    "1 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH5_AVAL", "\$(ASYNPORT)_AI", 5,      16,   0.,    10.,  3,    "1 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH6_AVAL", "\$(ASYNPORT)_AI", 6,      16,   0.,    10.,  3,    "1 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH7_AVAL", "\$(ASYNPORT)_AI", 7,      16,   0.,    10.,  3,    "1 second"}
 }
 
 # 4-20 mA mode
 
 #file "ai.template" { pattern
 #{P,           R,        PORT,       OFFSET, BITS, EGUL,  EGUF, PREC, SCAN}
-#{$(NAME):, $(ASYNPORT)_AI_CH0_VAL,  $(ASYNPORT)_AI, 0,      16,   0.004,    0.020,  3,    "I/O Intr"}
-#{$(NAME):, $(ASYNPORT)_AI_CH1_VAL,  $(ASYNPORT)_AI, 1,      16,   0.004,    0.020,  3,    "I/O Intr"}
-#{$(NAME):, $(ASYNPORT)_AI_CH2_VAL,  $(ASYNPORT)_AI, 2,      16,   0.004,    0.020,  3,    "I/O Intr"}
-#{$(NAME):, $(ASYNPORT)_AI_CH3_VAL,  $(ASYNPORT)_AI, 3,      16,   0.004,    0.020,  3,    "I/O Intr"}
-#{$(NAME):, $(ASYNPORT)_AI_CH4_VAL,  $(ASYNPORT)_AI, 4,      16,   0.004,    0.020,  3,    "I/O Intr"}
-#{$(NAME):, $(ASYNPORT)_AI_CH5_VAL,  $(ASYNPORT)_AI, 5,      16,   0.004,    0.020,  3,    "I/O Intr"}
-#{$(NAME):, $(ASYNPORT)_AI_CH6_VAL,  $(ASYNPORT)_AI, 6,      16,   0.004,    0.020,  3,    "I/O Intr"}
-#{$(NAME):, $(ASYNPORT)_AI_CH7_VAL,  $(ASYNPORT)_AI, 7,      16,   0.004,    0.020,  3,    "I/O Intr"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH0_VAL",  "\$(ASYNPORT)_AI", 0,      16,   0.004,    0.020,  3,    "I/O Intr"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH1_VAL",  "\$(ASYNPORT)_AI", 1,      16,   0.004,    0.020,  3,    "I/O Intr"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH2_VAL",  "\$(ASYNPORT)_AI", 2,      16,   0.004,    0.020,  3,    "I/O Intr"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH3_VAL",  "\$(ASYNPORT)_AI", 3,      16,   0.004,    0.020,  3,    "I/O Intr"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH4_VAL",  "\$(ASYNPORT)_AI", 4,      16,   0.004,    0.020,  3,    "I/O Intr"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH5_VAL",  "\$(ASYNPORT)_AI", 5,      16,   0.004,    0.020,  3,    "I/O Intr"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH6_VAL",  "\$(ASYNPORT)_AI", 6,      16,   0.004,    0.020,  3,    "I/O Intr"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH7_VAL",  "\$(ASYNPORT)_AI", 7,      16,   0.004,    0.020,  3,    "I/O Intr"}
 #}
 
 #file "ai_average.template" { pattern
 #{P,           R,        PORT,       OFFSET, BITS, EGUL,  EGUF, PREC, SCAN}
-#{$(NAME):, $(ASYNPORT)_AI_CH0_AVAL, $(ASYNPORT)_AI, 0,      16,   0.004,    0.020,  3,    "1 second"}
-#{$(NAME):, $(ASYNPORT)_AI_CH1_AVAL, $(ASYNPORT)_AI, 1,      16,   0.004,    0.020,  3,    "1 second"}
-#{$(NAME):, $(ASYNPORT)_AI_CH2_AVAL, $(ASYNPORT)_AI, 2,      16,   0.004,    0.020,  3,    "1 second"}
-#{$(NAME):, $(ASYNPORT)_AI_CH3_AVAL, $(ASYNPORT)_AI, 3,      16,   0.004,    0.020,  3,    "1 second"}
-#{$(NAME):, $(ASYNPORT)_AI_CH4_AVAL, $(ASYNPORT)_AI, 4,      16,   0.004,    0.020,  3,    "1 second"}
-#{$(NAME):, $(ASYNPORT)_AI_CH5_AVAL, $(ASYNPORT)_AI, 5,      16,   0.004,    0.020,  3,    "1 second"}
-#{$(NAME):, $(ASYNPORT)_AI_CH6_AVAL, $(ASYNPORT)_AI, 6,      16,   0.004,    0.020,  3,    "1 second"}
-#{$(NAME):, $(ASYNPORT)_AI_CH7_AVAL, $(ASYNPORT)_AI, 7,      16,   0.004,    0.020,  3,    "1 second"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH0_AVAL, "\$(ASYNPORT)_AI", 0,      16,   0.004,    0.020,  3,    "1 second"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH1_AVAL, "\$(ASYNPORT)_AI", 1,      16,   0.004,    0.020,  3,    "1 second"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH2_AVAL, "\$(ASYNPORT)_AI", 2,      16,   0.004,    0.020,  3,    "1 second"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH3_AVAL, "\$(ASYNPORT)_AI", 3,      16,   0.004,    0.020,  3,    "1 second"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH4_AVAL, "\$(ASYNPORT)_AI", 4,      16,   0.004,    0.020,  3,    "1 second"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH5_AVAL, "\$(ASYNPORT)_AI", 5,      16,   0.004,    0.020,  3,    "1 second"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH6_AVAL, "\$(ASYNPORT)_AI", 6,      16,   0.004,    0.020,  3,    "1 second"}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CH7_AVAL, "\$(ASYNPORT)_AI", 7,      16,   0.004,    0.020,  3,    "1 second"}
 #}
 
 # Burn-out, Current/Voltage-mode status
@@ -85,14 +85,14 @@ file "ai_average.template" { pattern
 
 file "longin.template" { pattern
 {P,           R,        PORT,           OFFSET,   SCAN}
-{$(NAME):, $(ASYNPORT)_AI_St_CH0,    $(ASYNPORT)_AI_St,     0,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_St_CH1,    $(ASYNPORT)_AI_St,     1,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_St_CH2,    $(ASYNPORT)_AI_St,     2,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_St_CH3,    $(ASYNPORT)_AI_St,     3,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_St_CH4,    $(ASYNPORT)_AI_St,     4,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_St_CH5,    $(ASYNPORT)_AI_St,     5,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_St_CH6,    $(ASYNPORT)_AI_St,     6,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_St_CH7,    $(ASYNPORT)_AI_St,     7,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_St_CH0",    "\$(ASYNPORT)_AI_St",     0,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_St_CH1",    "\$(ASYNPORT)_AI_St",     1,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_St_CH2",    "\$(ASYNPORT)_AI_St",     2,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_St_CH3",    "\$(ASYNPORT)_AI_St",     3,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_St_CH4",    "\$(ASYNPORT)_AI_St",     4,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_St_CH5",    "\$(ASYNPORT)_AI_St",     5,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_St_CH6",    "\$(ASYNPORT)_AI_St",     6,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_St_CH7",    "\$(ASYNPORT)_AI_St",     7,       "I/O Intr"}
 }
 
 # 
@@ -103,131 +103,131 @@ file "longin.template" { pattern
 
 file "longin.template" { pattern
 {P,           R,        PORT,           OFFSET,   SCAN}
-{$(NAME):, $(ASYNPORT)_AIMR_CH0,    $(ASYNPORT)_AIMR,     0,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AIMR_CH1,    $(ASYNPORT)_AIMR,     1,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AIMR_CH2,    $(ASYNPORT)_AIMR,     2,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AIMR_CH3,    $(ASYNPORT)_AIMR,     3,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AIMR_CH4,    $(ASYNPORT)_AIMR,     4,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AIMR_CH5,    $(ASYNPORT)_AIMR,     5,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AIMR_CH6,    $(ASYNPORT)_AIMR,     6,       "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AIMR_CH7,    $(ASYNPORT)_AIMR,     7,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AIMR_CH0",    "\$(ASYNPORT)_AIMR",     0,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AIMR_CH1",    "\$(ASYNPORT)_AIMR",     1,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AIMR_CH2",    "\$(ASYNPORT)_AIMR",     2,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AIMR_CH3",    "\$(ASYNPORT)_AIMR",     3,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AIMR_CH4",    "\$(ASYNPORT)_AIMR",     4,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AIMR_CH5",    "\$(ASYNPORT)_AIMR",     5,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AIMR_CH6",    "\$(ASYNPORT)_AIMR",     6,       "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AIMR_CH7",    "\$(ASYNPORT)_AIMR",     7,       "I/O Intr"}
 }
 
 file "longout.template" { pattern
 {P,           R,        PORT,           OFFSET}
-{$(NAME):, $(ASYNPORT)_AIMW_CH0,    $(ASYNPORT)_AIMW,     0}
-{$(NAME):, $(ASYNPORT)_AIMW_CH1,    $(ASYNPORT)_AIMW,     1}
-{$(NAME):, $(ASYNPORT)_AIMW_CH2,    $(ASYNPORT)_AIMW,     2}
-{$(NAME):, $(ASYNPORT)_AIMW_CH3,    $(ASYNPORT)_AIMW,     3}
-{$(NAME):, $(ASYNPORT)_AIMW_CH4,    $(ASYNPORT)_AIMW,     4}
-{$(NAME):, $(ASYNPORT)_AIMW_CH5,    $(ASYNPORT)_AIMW,     5}
-{$(NAME):, $(ASYNPORT)_AIMW_CH6,    $(ASYNPORT)_AIMW,     6}
-{$(NAME):, $(ASYNPORT)_AIMW_CH7,    $(ASYNPORT)_AIMW,     7}
+{"\$(NAME):", "\$(ASYNPORT)_AIMW_CH0",    "\$(ASYNPORT)_AIMW",     0}
+{"\$(NAME):", "\$(ASYNPORT)_AIMW_CH1",    "\$(ASYNPORT)_AIMW",     1}
+{"\$(NAME):", "\$(ASYNPORT)_AIMW_CH2",    "\$(ASYNPORT)_AIMW",     2}
+{"\$(NAME):", "\$(ASYNPORT)_AIMW_CH3",    "\$(ASYNPORT)_AIMW",     3}
+{"\$(NAME):", "\$(ASYNPORT)_AIMW_CH4",    "\$(ASYNPORT)_AIMW",     4}
+{"\$(NAME):", "\$(ASYNPORT)_AIMW_CH5",    "\$(ASYNPORT)_AIMW",     5}
+{"\$(NAME):", "\$(ASYNPORT)_AIMW_CH6",    "\$(ASYNPORT)_AIMW",     6}
+{"\$(NAME):", "\$(ASYNPORT)_AIMW_CH7",    "\$(ASYNPORT)_AIMW",     7}
 }
 
 file "aiFloat64.template" { pattern
 {P,           R,        PORT,            OFFSET,   DATA_TYPE,     HOPR,     LOPR,   PREC, SCAN}
-{$(NAME):, $(ASYNPORT)_AI_CH0_BO_RBV,  $(ASYNPORT)_BOR, 0,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH1_BO_RBV,  $(ASYNPORT)_BOR, 2,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH2_BO_RBV,  $(ASYNPORT)_BOR, 4,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH3_BO_RBV,  $(ASYNPORT)_BOR, 6,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH4_BO_RBV,  $(ASYNPORT)_BOR, 8,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH5_BO_RBV,  $(ASYNPORT)_BOR, 10,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH6_BO_RBV,  $(ASYNPORT)_BOR, 12,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH7_BO_RBV,  $(ASYNPORT)_BOR, 14,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH0_BO_RBV",  "\$(ASYNPORT)_BOR", 0,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH1_BO_RBV",  "\$(ASYNPORT)_BOR", 2,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH2_BO_RBV",  "\$(ASYNPORT)_BOR", 4,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH3_BO_RBV",  "\$(ASYNPORT)_BOR", 6,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH4_BO_RBV",  "\$(ASYNPORT)_BOR", 8,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH5_BO_RBV",  "\$(ASYNPORT)_BOR", 10,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH6_BO_RBV",  "\$(ASYNPORT)_BOR", 12,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH7_BO_RBV",  "\$(ASYNPORT)_BOR", 14,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
 }
 
 file "aoFloat64.template" { pattern
 {P,           R,        PORT,            OFFSET,   DATA_TYPE,     HOPR,     LOPR,   PREC, SCAN}
-{$(NAME):, $(ASYNPORT)_AI_CH0_BO_Setp,  $(ASYNPORT)_BOW, 0,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH1_BO_Setp,  $(ASYNPORT)_BOW, 2,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH2_BO_Setp,  $(ASYNPORT)_BOW, 4,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH3_BO_Setp,  $(ASYNPORT)_BOW, 6,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH4_BO_Setp,  $(ASYNPORT)_BOW, 8,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH5_BO_Setp,  $(ASYNPORT)_BOW, 10,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH6_BO_Setp,  $(ASYNPORT)_BOW, 12,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
-{$(NAME):, $(ASYNPORT)_AI_CH7_BO_Setp,  $(ASYNPORT)_BOW, 14,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH0_BO_Setp",  "\$(ASYNPORT)_BOW", 0,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH1_BO_Setp",  "\$(ASYNPORT)_BOW", 2,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH2_BO_Setp",  "\$(ASYNPORT)_BOW", 4,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH3_BO_Setp",  "\$(ASYNPORT)_BOW", 6,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH4_BO_Setp",  "\$(ASYNPORT)_BOW", 8,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH5_BO_Setp",  "\$(ASYNPORT)_BOW", 10,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH6_BO_Setp",  "\$(ASYNPORT)_BOW", 12,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH7_BO_Setp",  "\$(ASYNPORT)_BOW", 14,       FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
 }
 
 
 #file "asynRecord.template" { pattern
 #{P,           R,          PORT,              ADDR,        TMOD,  IFACE}
-#{$(NAME):, $(ASYNPORT)_AI_CHx_Asyn, $(ASYNPORT)_AI,     0,        Read,  asynInt32}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_CHx_Asyn", "\$(ASYNPORT)_AI",     0,        Read,  asynInt32}
 #}
 
 file "statistics.template" { pattern
 {P,           R,          PORT,              SCAN}
-{$(NAME):, $(ASYNPORT)_AI_CHx_,     $(ASYNPORT)_AI,  "10 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CHx_",     "\$(ASYNPORT)_AI",  "10 second"}
 }
 
 file "poll_delay.template" { pattern
 {P,           R,               PORT}
-{$(NAME):, $(ASYNPORT)_AI_CHx_PollDelay, $(ASYNPORT)_AI}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CHx_PollDelay", "\$(ASYNPORT)_AI"}
 }
 
 #file "asynRecord.template" { pattern
 #{P,           R,          PORT,              ADDR,        TMOD,  IFACE}
-#{$(NAME):, $(ASYNPORT)_AI_St_Asyn, $(ASYNPORT)_AI_St,     0,        Read,  asynInt32}
+#{"\$(NAME):", "\$(ASYNPORT)_AI_St_Asyn", "\$(ASYNPORT)_AI_St",     0,        Read,  asynInt32}
 #}
 
 file "statistics.template" { pattern
 {P,           R,          PORT,              SCAN}
-{$(NAME):, $(ASYNPORT)_AI_St_,     $(ASYNPORT)_AI_St,  "10 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_St_",     "\$(ASYNPORT)_AI_St",  "10 second"}
 }
 
 file "poll_delay.template" { pattern
 {P,           R,               PORT}
-{$(NAME):, $(ASYNPORT)_AI_St_PollDelay, $(ASYNPORT)_AI_St}
+{"\$(NAME):", "\$(ASYNPORT)_AI_St_PollDelay", "\$(ASYNPORT)_AI_St"}
 }
 
 #file "asynRecord.template" { pattern
 #{P,           R,          PORT,              ADDR,        TMOD,  IFACE}
-#{$(NAME):, $(ASYNPORT)_AIMR_Asyn, $(ASYNPORT)_AIMR,     0,        Read,  asynInt32}
+#{"\$(NAME):", "\$(ASYNPORT)_AIMR_Asyn", "\$(ASYNPORT)_AIMR",     0,        Read,  asynInt32}
 #}
 
 file "statistics.template" { pattern
 {P,           R,          PORT,              SCAN}
-{$(NAME):, $(ASYNPORT)_AIMR_,     $(ASYNPORT)_AIMR,  "10 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AIMR_",     "\$(ASYNPORT)_AIMR",  "10 second"}
 }
 
 file "poll_delay.template" { pattern
 {P,           R,               PORT}
-{$(NAME):, $(ASYNPORT)_AIMR_PollDelay, $(ASYNPORT)_AIMR}
+{"\$(NAME):", "\$(ASYNPORT)_AIMR_PollDelay", "\$(ASYNPORT)_AIMR"}
 }
 
 #file "asynRecord.template" { pattern
 #{P,           R,          PORT,              ADDR,        TMOD,  IFACE}
-#{$(NAME):, $(ASYNPORT)_AIMW_Asyn, $(ASYNPORT)_AIMW,     0,        Read,  asynInt32}
+#{"\$(NAME):", "\$(ASYNPORT)_AIMW_Asyn", "\$(ASYNPORT)_AIMW",     0,        Read,  asynInt32}
 #}
 
 file "statistics.template" { pattern
 {P,           R,          PORT,              SCAN}
-{$(NAME):, $(ASYNPORT)_AIMW_,     $(ASYNPORT)_AIMW,  "10 second"}
+{"\$(NAME):", "\$(ASYNPORT)_AIMW_",     "\$(ASYNPORT)_AIMW",  "10 second"}
 }
 
 #file "asynRecord.template" { pattern
 #{P,           R,          PORT,              ADDR,        TMOD,  IFACE}
-#{$(NAME):, $(ASYNPORT)_BOR_Asyn, $(ASYNPORT)_BOR,     0,        Read,  asynInt32}
+#{"\$(NAME):", "\$(ASYNPORT)_BOR_Asyn", "\$(ASYNPORT)_BOR",     0,        Read,  asynInt32}
 #}
 
 file "statistics.template" { pattern
 {P,           R,          PORT,              SCAN}
-{$(NAME):, $(ASYNPORT)_BOR_,     $(ASYNPORT)_BOR,  "10 second"}
+{"\$(NAME):", "\$(ASYNPORT)_BOR_",     "\$(ASYNPORT)_BOR",  "10 second"}
 }
 
 file "poll_delay.template" { pattern
 {P,           R,               PORT}
-{$(NAME):, $(ASYNPORT)_BOR_PollDelay, $(ASYNPORT)_BOR}
+{"\$(NAME):", "\$(ASYNPORT)_BOR_PollDelay", "\$(ASYNPORT)_BOR"}
 }
 
 #file "asynRecord.template" { pattern
 #{P,           R,          PORT,              ADDR,        TMOD,  IFACE}
-#{$(NAME):, $(ASYNPORT)_BOW_Asyn, $(ASYNPORT)_BOW,     0,        Read,  asynInt32}
+#{"\$(NAME):", "\$(ASYNPORT)_BOW_Asyn", "\$(ASYNPORT)_BOW",     0,        Read,  asynInt32}
 #}
 
 file "statistics.template" { pattern
 {P,           R,          PORT,              SCAN}
-{$(NAME):, $(ASYNPORT)_BOW_,     $(ASYNPORT)_BOW,  "10 second"}
+{"\$(NAME):", "\$(ASYNPORT)_BOW_",     "\$(ASYNPORT)_BOW",  "10 second"}
 }
 
 # ##############################################################################
