@@ -1,0 +1,38 @@
+# ##############################################################################
+# ##############################################################################
+
+# asyn record for the underlying asyn octet port
+file "$(ASYN)/db/asynRecord.db" { pattern
+{P,                      R, PORT, ADDR,    IMAX,    OMAX}
+{"\$(NAME):", "\$(ASYNPORT)_OctetAsyn", "\$(ASYNPORT)",   0,      80,      80}
+}
+
+# ##############################################################################
+# ##############################################################################
+
+# Scaled values
+
+
+file "aiFloat64.template" { pattern
+{P,           R,        PORT,            OFFSET,   DATA_TYPE,     HOPR,     LOPR,   PREC, SCAN}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH0",  "\$(ASYNPORT)_AI", 0,         FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH1",  "\$(ASYNPORT)_AI", 2,         FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH2",  "\$(ASYNPORT)_AI", 4,         FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH3",  "\$(ASYNPORT)_AI", 6,         FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH4",  "\$(ASYNPORT)_AI", 8,         FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH5",  "\$(ASYNPORT)_AI", 10,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH6",  "\$(ASYNPORT)_AI", 12,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_AI_CH7",  "\$(ASYNPORT)_AI", 14,        FLOAT32_LE,    0.0,      4.0,    3,    "I/O Intr"}
+}
+
+
+file "statistics.template" { pattern
+{P,           R,          PORT,              SCAN}
+{"\$(NAME):", "\$(ASYNPORT)_AI_",     "\$(ASYNPORT)_AI",  "10 second"}
+}
+
+# ##############################################################################
+# ##############################################################################
+
+# this one does not have watchdog
+#

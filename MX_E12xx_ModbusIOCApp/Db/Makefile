@@ -13,6 +13,7 @@ include $(TOP)/configure/CONFIG
 #DB += dbExampleDB.db
  DB += ioLogik_E1210.db
  DB += ioLogik_E1240.db
+ DB += ioLogik_E1262.db
 # DB += ioLogik_E1241.db
 # DB += ioLogik_E1241-addons.db
 # DB += ioLogik_E1242.db
