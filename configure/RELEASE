@@ -8,3 +8,4 @@ include $(TOP)/../../../ISIS_CONFIG
 
 ASYN=$(SUPPORT)/asyn/master
 MODBUS=$(SUPPORT)/modbus/master
+ONCRPC=$(SUPPORT)/oncrpc/master

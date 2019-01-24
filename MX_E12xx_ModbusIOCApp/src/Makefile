@@ -23,8 +23,8 @@ MX_E12xx_ModbusIOC_DBD += drvAsynIPPort.dbd
 MX_E12xx_ModbusIOC_DBD += modbusSupport.dbd
 
 # Add all the support libraries needed by this IOC
-MX_E12xx_ModbusIOC_LIBS += asyn
 MX_E12xx_ModbusIOC_LIBS += modbus
+MX_E12xx_ModbusIOC_LIBS += asyn
 
 # MX_E12xx_ModbusIOC_registerRecordDeviceDriver.cpp derives from MX_E12xx_ModbusIOC.dbd
 MX_E12xx_ModbusIOC_SRCS += MX_E12xx_ModbusIOC_registerRecordDeviceDriver.cpp
