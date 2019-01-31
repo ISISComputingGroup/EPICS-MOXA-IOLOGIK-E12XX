@@ -13,16 +13,16 @@ file "$(ASYN)/db/asynRecord.db" { pattern
 
 file "bi_bit.template" { pattern
 {P,           R,         PORT,           OFFSET,   ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
-{"\$(NAME):", "\$(ASYNPORT)_DI_CH00",     "\$(ASYNPORT)_DI",     0x00,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
-{"\$(NAME):", "\$(ASYNPORT)_DI_CH01",     "\$(ASYNPORT)_DI",     0x01,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
-{"\$(NAME):", "\$(ASYNPORT)_DI_CH02",     "\$(ASYNPORT)_DI",     0x02,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
-{"\$(NAME):", "\$(ASYNPORT)_DI_CH03",     "\$(ASYNPORT)_DI",     0x03,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
-{"\$(NAME):", "\$(ASYNPORT)_DI_CH04",     "\$(ASYNPORT)_DI",     0x04,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
-{"\$(NAME):", "\$(ASYNPORT)_DI_CH05",     "\$(ASYNPORT)_DI",     0x05,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
-{"\$(NAME):", "\$(ASYNPORT)_DI_CH06",     "\$(ASYNPORT)_DI",     0x06,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
-{"\$(NAME):", "\$(ASYNPORT)_DI_CH07",     "\$(ASYNPORT)_DI",     0x07,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
-{"\$(NAME):", "\$(ASYNPORT)_DI_CH08",     "\$(ASYNPORT)_DI",     0x08,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
-{"\$(NAME):", "\$(ASYNPORT)_DI_CH09",     "\$(ASYNPORT)_DI",     0x09,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_DI_CH0",     "\$(ASYNPORT)_DI",     0x00,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_DI_CH1",     "\$(ASYNPORT)_DI",     0x01,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_DI_CH2",     "\$(ASYNPORT)_DI",     0x02,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_DI_CH3",     "\$(ASYNPORT)_DI",     0x03,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_DI_CH4",     "\$(ASYNPORT)_DI",     0x04,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_DI_CH5",     "\$(ASYNPORT)_DI",     0x05,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_DI_CH6",     "\$(ASYNPORT)_DI",     0x06,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_DI_CH7",     "\$(ASYNPORT)_DI",     0x07,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_DI_CH8",     "\$(ASYNPORT)_DI",     0x08,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{"\$(NAME):", "\$(ASYNPORT)_DI_CH9",     "\$(ASYNPORT)_DI",     0x09,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
 {"\$(NAME):", "\$(ASYNPORT)_DI_CH10",     "\$(ASYNPORT)_DI",     0x0A,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
 {"\$(NAME):", "\$(ASYNPORT)_DI_CH11",     "\$(ASYNPORT)_DI",     0x0B,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
 {"\$(NAME):", "\$(ASYNPORT)_DI_CH12",     "\$(ASYNPORT)_DI",     0x0C,       Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
