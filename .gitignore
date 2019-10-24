@@ -9,6 +9,6 @@ envPaths
 bin/
 lib/
 documentation/html
-db/
+/db/
 dbd/
 git-cmd.sh
