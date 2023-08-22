@@ -16,8 +16,8 @@ include $(TOP)/configure/CONFIG
  DB += ioLogik_E1262.db
 # DB += ioLogik_E1241.db
 # DB += ioLogik_E1241-addons.db
-# DB += ioLogik_E1242.db
-# DB += ioLogik_E1242-addons.db
+ DB += ioLogik_E1242.db
+ DB += ioLogik_E1242-addons.db
 # DB += ioLogik_E1214.db
 # DB += ioLogik_E1214-addons.db
 
