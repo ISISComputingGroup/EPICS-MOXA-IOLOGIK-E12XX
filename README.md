@@ -15,5 +15,6 @@ Supported modules list:
   * ioLogik E1240 (8xAI)
   * ioLogik E1241 (4xAO)
   * ioLogik E1242 (4xAI, 4xDI, 4xDIO)
+  * ioLogik E1213 (8xDI, 4xDO, 4xDIO)
 
 ioLogik E1260 (6x RTD) is supported by https://gitlab.com/LBCS-ELI-BL/epics-ioc-moxa-e1260_pub.git

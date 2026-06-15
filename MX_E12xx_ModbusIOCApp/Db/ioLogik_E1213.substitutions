@@ -1,0 +1,53 @@
+# ##############################################################################
+# ##############################################################################
+
+# asyn record for the underlying asyn octet port
+file "$(ASYN)/db/asynRecord.db" { pattern
+{P,                      R, PORT, ADDR,    IMAX,    OMAX}
+{$(NAME):, $(ASYNPORT)_OctetAsyn, $(ASYNPORT),   0,      80,      80}
+}
+
+# ##############################################################################
+# ##############################################################################
+
+file "bi_bit.template" { pattern
+{P,           R,         PORT,           OFFSET,   ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
+{$(NAME):, $(ASYNPORT)_DI_CH0,     $(ASYNPORT)_DI,     0,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH1,     $(ASYNPORT)_DI,     1,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH2,     $(ASYNPORT)_DI,     2,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH3,     $(ASYNPORT)_DI,     3,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH4,     $(ASYNPORT)_DI,     4,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH5,     $(ASYNPORT)_DI,     5,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH6,     $(ASYNPORT)_DI,     6,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DI_CH7,     $(ASYNPORT)_DI,     7,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+}
+
+# ##############################################################################
+# ##############################################################################
+
+file "bo_bit.template" { pattern
+{P,           R,          PORT,          OFFSET,   ZNAM,   ONAM}
+{$(NAME):, $(ASYNPORT)_DO_CH0,     $(ASYNPORT)_DO,     0,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DO_CH1,     $(ASYNPORT)_DO,     1,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DO_CH2,     $(ASYNPORT)_DO,     2,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DO_CH3,     $(ASYNPORT)_DO,     3,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DO_CH4,     $(ASYNPORT)_DO,     4,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DO_CH5,     $(ASYNPORT)_DO,     5,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DO_CH6,     $(ASYNPORT)_DO,     6,        Low,    High}
+{$(NAME):, $(ASYNPORT)_DO_CH7,     $(ASYNPORT)_DO,     7,        Low,    High}
+}
+
+file "bi_bit.template" { pattern
+{P,           R,             PORT,           OFFSET,   ZNAM,   ONAM,  ZSV,       OSV,    SCAN}
+{$(NAME):, $(ASYNPORT)_DO_CH0_RBV, $(ASYNPORT)_DO_RBV,     0,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DO_CH1_RBV, $(ASYNPORT)_DO_RBV,     1,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DO_CH2_RBV, $(ASYNPORT)_DO_RBV,     2,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DO_CH3_RBV, $(ASYNPORT)_DO_RBV,     3,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DO_CH4_RBV, $(ASYNPORT)_DO_RBV,     4,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DO_CH5_RBV, $(ASYNPORT)_DO_RBV,     5,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DO_CH6_RBV, $(ASYNPORT)_DO_RBV,     6,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+{$(NAME):, $(ASYNPORT)_DO_CH7_RBV, $(ASYNPORT)_DO_RBV,     7,        Low,    High,  NO_ALARM,  NO_ALARM,  "I/O Intr"}
+}
+
+
+
